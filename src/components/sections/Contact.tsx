@@ -132,7 +132,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form - ENHANCED PLACEHOLDER VISIBILITY */}
           <div className="bg-white p-8 rounded-2xl shadow-xl">
             <h3 className="text-xl font-bold mb-2 text-gray-800">השאירו פרטים</h3>
             <p className="text-gray-600 mb-6">נחזור אליכם לייעוץ חינם תוך 24 שעות</p>
@@ -144,7 +144,7 @@ const Contact = () => {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-gray-800 placeholder-gray-600"
                   placeholder="הכנס את שמך המלא"
                 />
               </div>
@@ -155,7 +155,7 @@ const Contact = () => {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-gray-800 placeholder-gray-600"
                   placeholder="050-1234567"
                 />
               </div>
@@ -166,7 +166,7 @@ const Contact = () => {
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-gray-800 placeholder-gray-600"
                   placeholder="your@email.com"
                 />
               </div>
@@ -176,7 +176,7 @@ const Contact = () => {
                 <textarea
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 h-32 resize-none transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 h-32 resize-none transition-colors text-gray-800 placeholder-gray-600"
                   placeholder="ספרו לי על הנכס שאתם מחפשים או רוצים למכור..."
                 ></textarea>
               </div>

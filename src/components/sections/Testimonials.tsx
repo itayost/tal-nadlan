@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Hand } from 'lucide-react';
 import { testimonials } from '@/data/testimonials';
 import { useInView } from '@/hooks/useInView';
 
 const Testimonials = () => {
   const [displayTestimonials, setDisplayTestimonials] = useState(testimonials.slice(0, 6));
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.1 });
   const { ref: gridRef, isInView: gridInView } = useInView({ threshold: 0.1 });
@@ -23,40 +23,41 @@ const Testimonials = () => {
     setDisplayTestimonials(getRandomTestimonials());
   }, []);
 
-  // Auto-scroll for mobile
-  useEffect(() => {
-    if (!isAutoPlaying || window.innerWidth >= 768) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, displayTestimonials.length]);
-
-  // Scroll to current testimonial
-  useEffect(() => {
-    if (scrollContainerRef.current && window.innerWidth < 768) {
+  // Hide swipe hint after first interaction
+  const handleScroll = () => {
+    if (showSwipeHint) {
+      setShowSwipeHint(false);
+    }
+    
+    // Update current index based on scroll position
+    if (scrollContainerRef.current) {
+      const scrollLeft = scrollContainerRef.current.scrollLeft;
       const scrollWidth = scrollContainerRef.current.scrollWidth;
-      const containerWidth = scrollContainerRef.current.clientWidth;
+      const clientWidth = scrollContainerRef.current.clientWidth;
       const cardWidth = scrollWidth / displayTestimonials.length;
       
-      scrollContainerRef.current.scrollTo({
-        left: currentIndex * cardWidth,
-        behavior: 'smooth'
-      });
+      // For RTL, calculate index properly
+      // In RTL, scrollLeft might be negative or count from max
+      const maxScroll = scrollWidth - clientWidth;
+      const normalizedScroll = Math.abs(scrollLeft);
+      const newIndex = Math.min(
+        Math.round(normalizedScroll / cardWidth),
+        displayTestimonials.length - 1
+      );
+      
+      setCurrentIndex(newIndex);
     }
-  }, [currentIndex, displayTestimonials.length]);
-
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length);
-    setIsAutoPlaying(false);
   };
 
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + displayTestimonials.length) % displayTestimonials.length);
-    setIsAutoPlaying(false);
-  };
+  // Auto-hide swipe hint after a few seconds
+  useEffect(() => {
+    if (showSwipeHint && window.innerWidth < 768) {
+      const timer = setTimeout(() => {
+        setShowSwipeHint(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSwipeHint]);
 
   return (
     <section id="testimonials" className="py-16 md:py-20 bg-white overflow-hidden" ref={sectionRef}>
@@ -74,38 +75,38 @@ const Testimonials = () => {
         </div>
         
         <div className="relative">
-          {/* Mobile: Horizontal Carousel with Auto-scroll */}
+          {/* Mobile: Horizontal Carousel with Swipe */}
           <div className="md:hidden relative">
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur p-2 rounded-full shadow-lg hover:bg-white transition-all"
-              aria-label="Previous"
-            >
-              <ChevronRight className="w-5 h-5 text-gray-600" />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur p-2 rounded-full shadow-lg hover:bg-white transition-all"
-              aria-label="Next"
-            >
-              <ChevronLeft className="w-5 h-5 text-gray-600" />
-            </button>
+            {/* Swipe Hint */}
+            {showSwipeHint && (
+              <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
+                <div className="bg-black/70 text-white px-4 py-3 rounded-full flex items-center gap-2 animate-pulse">
+                  <Hand className="w-5 h-5 rotate-90" />
+                  <span className="text-sm font-medium">החליקו לצפייה בעוד המלצות</span>
+                </div>
+              </div>
+            )}
 
             {/* Carousel Container */}
             <div 
               ref={scrollContainerRef}
-              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              onScroll={handleScroll}
+              onTouchStart={() => setShowSwipeHint(false)}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
+              style={{ 
+                scrollbarWidth: 'none', 
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch' // Better iOS scrolling
+              }}
             >
               {displayTestimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
                   className={`flex-none w-[85vw] snap-center transition-all duration-500 ${
-                    index === currentIndex ? 'scale-100 opacity-100' : 'scale-95 opacity-70'
+                    Math.abs(index - currentIndex) <= 1 ? 'opacity-100' : 'opacity-60'
                   }`}
                 >
-                  <div className={`h-full p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl ${
+                  <div className={`h-full p-6 rounded-2xl shadow-lg transition-all duration-300 ${
                     index % 2 === 0 
                       ? 'bg-gradient-to-br from-blue-50 to-white' 
                       : 'bg-gradient-to-br from-orange-50 to-white'
@@ -143,23 +144,11 @@ const Testimonials = () => {
               ))}
             </div>
             
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-6">
-              {displayTestimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setCurrentIndex(index);
-                    setIsAutoPlaying(false);
-                  }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'w-8 bg-blue-600' 
-                      : 'w-2 bg-gray-300 hover:bg-gray-400'
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
+            {/* Simple Progress Indicator (optional - very subtle) */}
+            <div className="flex justify-center gap-1 mt-4">
+              <span className="text-xs text-gray-400">
+                {currentIndex + 1} / {displayTestimonials.length}
+              </span>
             </div>
           </div>
 
@@ -257,6 +246,15 @@ const Testimonials = () => {
           animation: star-pop 0.6s ease-out forwards;
         }
         
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        
+        .animate-pulse {
+          animation: pulse 2s ease-in-out infinite;
+        }
+        
         /* Hide scrollbar for Chrome, Safari and Opera */
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
@@ -266,6 +264,11 @@ const Testimonials = () => {
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+        
+        /* Smooth scroll behavior */
+        .scrollbar-hide {
+          scroll-behavior: smooth;
         }
       `}</style>
     </section>

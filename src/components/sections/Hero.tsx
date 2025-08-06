@@ -32,7 +32,7 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Images Slideshow with Ken Burns effect */}
+      {/* Background Images Slideshow - Simple fade transition */}
       {backgroundImages.map((image, index) => (
         <div
           key={index}
@@ -43,9 +43,7 @@ const Hero = () => {
           <img
             src={image}
             alt={`Hero background ${index + 1}`}
-            className={`w-full h-full object-cover ${
-              index === currentImageIndex ? 'animate-ken-burns' : ''
-            }`}
+            className="w-full h-full object-cover"
           />
           {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 bg-black/50"></div>
@@ -118,11 +116,6 @@ const Hero = () => {
       </div>
 
       <style jsx>{`
-        @keyframes ken-burns {
-          0% { transform: scale(1); }
-          100% { transform: scale(1.1); }
-        }
-        
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
@@ -131,10 +124,6 @@ const Hero = () => {
         @keyframes pulse-slow {
           0%, 100% { opacity: 0.5; }
           50% { opacity: 0.8; }
-        }
-        
-        .animate-ken-burns {
-          animation: ken-burns 8s ease-out;
         }
         
         .animate-float {

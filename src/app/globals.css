@@ -1,3 +1,4 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
 :root {
@@ -19,8 +20,326 @@
   }
 }
 
+/* ========================================== */
+/* Global Smooth Scrolling */
+/* ========================================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset for fixed navbar */
+}
+
+/* Smooth scrolling for all anchor links */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* ========================================== */
+/* Base Body Styles */
+/* ========================================== */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll from animations */
+  position: relative;
+}
+
+/* ========================================== */
+/* Scroll-Triggered Animation Classes */
+/* ========================================== */
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide Down Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide Left Animation */
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide Right Animation */
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Zoom In Animation */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Zoom Out Animation */
+@keyframes zoomOut {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rotate In Animation */
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+/* ========================================== */
+/* Animation Utility Classes */
+/* ========================================== */
+
+/* Add these classes to elements you want to animate */
+.animate-on-scroll {
+  opacity: 0;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.animate-fade-in {
+  animation-name: fadeIn;
+}
+
+.animate-on-scroll.animate-slide-up {
+  animation-name: slideUp;
+}
+
+.animate-on-scroll.animate-slide-down {
+  animation-name: slideDown;
+}
+
+.animate-on-scroll.animate-slide-left {
+  animation-name: slideLeft;
+}
+
+.animate-on-scroll.animate-slide-right {
+  animation-name: slideRight;
+}
+
+.animate-on-scroll.animate-zoom-in {
+  animation-name: zoomIn;
+}
+
+.animate-on-scroll.animate-zoom-out {
+  animation-name: zoomOut;
+}
+
+.animate-on-scroll.animate-rotate-in {
+  animation-name: rotateIn;
+}
+
+/* Trigger animation when in view */
+.animate-on-scroll.in-view {
+  animation-play-state: running;
+}
+
+/* Animation delays for staggered effects */
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-700 { animation-delay: 700ms; }
+.animation-delay-800 { animation-delay: 800ms; }
+.animation-delay-900 { animation-delay: 900ms; }
+.animation-delay-1000 { animation-delay: 1000ms; }
+
+/* Animation durations */
+.animation-duration-500 { animation-duration: 500ms; }
+.animation-duration-700 { animation-duration: 700ms; }
+.animation-duration-1000 { animation-duration: 1000ms; }
+.animation-duration-1500 { animation-duration: 1500ms; }
+.animation-duration-2000 { animation-duration: 2000ms; }
+
+/* ========================================== */
+/* Section Transitions */
+/* ========================================== */
+
+/* Add smooth transitions to all sections */
+section {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Parallax scrolling effect */
+.parallax {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* ========================================== */
+/* Page Load Animations */
+/* ========================================== */
+
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply to main content on load */
+main {
+  animation: pageLoad 1s ease-out;
+}
+
+/* ========================================== */
+/* Scroll Progress Indicator (Optional) */
+/* ========================================== */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s ease;
+  z-index: 9999;
+}
+
+/* ========================================== */
+/* Responsive Adjustments */
+/* ========================================== */
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 60px; /* Smaller offset for mobile navbar */
+  }
+  
+  /* Reduce animation distances on mobile */
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+    }
+  }
+  
+  @keyframes slideLeft {
+    from {
+      transform: translateX(20px);
+    }
+  }
+  
+  @keyframes slideRight {
+    from {
+      transform: translateX(-20px);
+    }
+  }
+}
+
+/* ========================================== */
+/* Accessibility - Respect reduced motion */
+/* ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
 }
