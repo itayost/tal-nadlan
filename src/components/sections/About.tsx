@@ -97,35 +97,6 @@ const About = () => {
               {agentInfo.aboutMe.content}
             </p>
             
-            {/* Values - Using stagger animation with global classes */}
-            <div 
-              ref={valuesRef}
-              className="bg-gradient-to-r from-orange-50 to-blue-50 p-4 md:p-6 rounded-xl mb-6"
-            >
-              <h5 className="text-base md:text-lg font-bold text-gray-800 mb-4 text-center">
-                הערכים שהבאתי מהספורט:
-              </h5>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 stagger-animate">
-                {agentInfo.values.map((value, index) => (
-                  <div 
-                    key={index} 
-                    className={`text-center p-2 will-animate ${
-                      valuesInView ? 'animate-scale-in' : 'opacity-0'
-                    }`}
-                    style={{ animationDelay: isMobile ? `${index * 100}ms` : `${300 + index * 150}ms` }}
-                  >
-                    <Target className="w-6 h-6 md:w-8 md:h-8 text-blue-600 mx-auto mb-2 animate-pulse-subtle" />
-                    <p className="font-semibold text-sm md:text-base text-gray-800">
-                      {value.title}
-                    </p>
-                    <p className="text-xs text-gray-600 mt-1 hidden sm:block">
-                      {value.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
             {/* Qualifications - Using fade-up with stagger */}
             <div className="space-y-2 md:space-y-3 mb-6">
               {agentInfo.qualifications.slice(0, 4).map((qualification, index) => (
