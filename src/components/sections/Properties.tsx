@@ -135,15 +135,6 @@ const Properties = () => {
             </div>
           ))}
         </div>
-
-        {/* Show count indicator */}
-        <div className="text-center mt-6 text-sm text-gray-500">
-          {isMobile ? (
-            <p>מציג 3 נכסים מתוך {properties.length}</p>
-          ) : (
-            <p>מציג 6 נכסים מתוך {properties.length}</p>
-          )}
-        </div>
         
         {/* CTA Buttons */}
         <div className="text-center mt-8 md:mt-12">
