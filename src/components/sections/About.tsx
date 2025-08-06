@@ -71,37 +71,6 @@ const About = () => {
               {agentInfo.aboutMe.content}
             </p>
             
-            {/* Values - Stagger animation */}
-            <div 
-              ref={valuesRef}
-              className="bg-gradient-to-r from-orange-50 to-blue-50 p-4 md:p-6 rounded-xl mb-6"
-            >
-              <h5 className="text-base md:text-lg font-bold text-gray-800 mb-4 text-center">
-                הערכים שהבאתי מהספורט:
-              </h5>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {agentInfo.values.map((value, index) => (
-                  <div 
-                    key={index} 
-                    className={`text-center p-2 transition-all duration-500 ${
-                      valuesInView 
-                        ? `opacity-100 translate-y-0 delay-${index * 100}` 
-                        : 'opacity-0 translate-y-5'
-                    }`}
-                    style={{ transitionDelay: valuesInView ? `${index * 150}ms` : '0ms' }}
-                  >
-                    <Target className="w-6 h-6 md:w-8 md:h-8 text-blue-600 mx-auto mb-2 animate-pulse-icon" />
-                    <p className="font-semibold text-sm md:text-base text-gray-800">
-                      {value.title}
-                    </p>
-                    <p className="text-xs text-gray-600 mt-1 hidden sm:block">
-                      {value.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
             {/* Qualifications - Fade in one by one */}
             <div className="space-y-2 md:space-y-3 mb-6">
               {agentInfo.qualifications.slice(0, 4).map((qualification, index) => (
