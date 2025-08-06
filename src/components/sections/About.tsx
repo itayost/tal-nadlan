@@ -12,9 +12,6 @@ const About = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 md:mb-4 text-gray-800">
           {agentInfo.aboutMe.title}
         </h2>
-        <p className="text-center text-gray-600 mb-8 md:mb-12 text-base md:text-lg">
-          מהמגרש לעולם הנדל״ן 🏀🏡
-        </p>
         
         {/* Mobile: Stack vertically | Desktop: Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
@@ -101,13 +98,6 @@ const About = () => {
                   </span>
                 ))}
               </div>
-            </div>
-
-            {/* Quote - Mobile Friendly */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-4 md:p-6 rounded-xl text-white">
-              <p className="font-semibold text-base md:text-lg text-center">
-                ״{agentInfo.quote}״
-              </p>
             </div>
           </div>
         </div>
