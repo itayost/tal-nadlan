@@ -3,6 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Animation durations */
+  --animation-duration-fast: 200ms;
+  --animation-duration-base: 300ms;
+  --animation-duration-slow: 500ms;
+  --animation-duration-slower: 1000ms;
+  
+  /* Animation easings */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.37, 0, 0.63, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 @theme inline {
@@ -19,8 +30,463 @@
   }
 }
 
+/* Smooth scrolling for the entire document */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed navbar */
+}
+
+/* Disable smooth scrolling when users prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  /* Disable all animations for accessibility */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  
+  /* Better text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global transition utilities */
+* {
+  /* Default transitions for interactive elements */
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: var(--ease-smooth);
+  transition-duration: var(--animation-duration-fast);
+}
+
+/* Prevent layout shift from animations */
+.animate-in {
+  animation-fill-mode: both;
+}
+
+/* Global Animation Classes */
+
+/* Fade animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale animations */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide animations */
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-left {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* Bounce animation */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Spin animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fade-in var(--animation-duration-base) var(--ease-smooth) both;
+}
+
+.animate-fade-up {
+  animation: fade-up var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-fade-down {
+  animation: fade-down var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-fade-left {
+  animation: fade-left var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-fade-right {
+  animation: fade-right var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-scale-in {
+  animation: scale-in var(--animation-duration-base) var(--ease-spring) both;
+}
+
+.animate-zoom-in {
+  animation: zoom-in var(--animation-duration-slow) var(--ease-spring) both;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 600ms var(--ease-spring) both;
+}
+
+.animate-slide-up {
+  animation: slide-up var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-slide-down {
+  animation: slide-down var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-slide-left {
+  animation: slide-left var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-slide-right {
+  animation: slide-right var(--animation-duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* Animation delay utilities */
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-700 { animation-delay: 700ms; }
+.animation-delay-800 { animation-delay: 800ms; }
+.animation-delay-900 { animation-delay: 900ms; }
+.animation-delay-1000 { animation-delay: 1000ms; }
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation duration on mobile for better performance */
+  :root {
+    --animation-duration-fast: 150ms;
+    --animation-duration-base: 250ms;
+    --animation-duration-slow: 400ms;
+    --animation-duration-slower: 800ms;
+  }
+  
+  /* Simplify transforms on mobile */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px); /* Reduced from 20px */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-10px); /* Reduced from 20px */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-left {
+    from {
+      opacity: 0;
+      transform: translateX(10px); /* Reduced from 20px */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fade-right {
+    from {
+      opacity: 0;
+      transform: translateX(-10px); /* Reduced from 20px */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Disable complex animations on low-end mobile devices */
+  @media (hover: none) and (pointer: coarse) {
+    .animate-float,
+    .animate-spin-slow {
+      animation: none;
+    }
+  }
+  
+  /* Optimize scroll performance on mobile */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .scroll-item {
+    scroll-snap-align: center;
+  }
+}
+
+/* Performance optimizations */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation */
+.animation-done {
+  will-change: auto;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Intersection Observer classes for scroll animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--animation-duration-slow) var(--ease-out-expo);
+}
+
+.scroll-animate.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation helper */
+.stagger-animate > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--animation-duration-slow) var(--ease-out-expo);
+}
+
+.stagger-animate.in-view > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Generate stagger delays */
+.stagger-animate.in-view > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-animate.in-view > *:nth-child(2) { transition-delay: 100ms; }
+.stagger-animate.in-view > *:nth-child(3) { transition-delay: 200ms; }
+.stagger-animate.in-view > *:nth-child(4) { transition-delay: 300ms; }
+.stagger-animate.in-view > *:nth-child(5) { transition-delay: 400ms; }
+.stagger-animate.in-view > *:nth-child(6) { transition-delay: 500ms; }
+.stagger-animate.in-view > *:nth-child(7) { transition-delay: 600ms; }
+.stagger-animate.in-view > *:nth-child(8) { transition-delay: 700ms; }
+
+/* Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
