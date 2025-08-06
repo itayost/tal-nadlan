@@ -67,7 +67,7 @@ const Properties = () => {
           {displayProperties.map((property) => (
             <div
               key={property.id}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-2"
             >
               {/* Image */}
               <div className="relative h-48 md:h-56 overflow-hidden">
@@ -145,7 +145,7 @@ const Properties = () => {
           )}
         </div>
         
-        {/* CTA Buttons - Keeping hover effects on buttons as they're functional */}
+        {/* CTA Buttons */}
         <div className="text-center mt-8 md:mt-12">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a

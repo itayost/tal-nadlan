@@ -12,98 +12,54 @@ const Hero = () => {
     '/images/hero/hero3.jpg'
   ];
 
-  // State for managing image transitions
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  // State for current image
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [imagesPreloaded, setImagesPreloaded] = useState(false);
 
-  // Preload all images for smooth transitions
+  // Auto-switch images every 8 seconds
   useEffect(() => {
-    const preloadImages = async () => {
-      const promises = backgroundImages.map((src) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = src;
-          img.onload = resolve;
-          img.onerror = reject;
-        });
-      });
-      
-      try {
-        await Promise.all(promises);
-        setImagesPreloaded(true);
-      } catch (error) {
-        console.error('Failed to preload images:', error);
-        setImagesPreloaded(true); // Continue anyway
-      }
-    };
-
-    preloadImages();
-  }, []);
-
-  // Auto-switch images every 6 seconds with smooth crossfade
-  useEffect(() => {
-    if (!imagesPreloaded) return;
-    
     const interval = setInterval(() => {
-      setActiveImageIndex((prevIndex) => 
-        (prevIndex + 1) % backgroundImages.length
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 6000);
+    }, 8000);
 
     // Trigger animations after component mounts
-    const timer = setTimeout(() => setIsLoaded(true), 100);
+    setIsLoaded(true);
 
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timer);
-    };
-  }, [backgroundImages.length, imagesPreloaded]);
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Images Container with Smooth Crossfade */}
-      <div className="absolute inset-0">
-        {backgroundImages.map((image, index) => (
-          <div
-            key={`bg-image-${index}`}
-            className={`absolute inset-0 transition-opacity ${
-              index === activeImageIndex 
-                ? 'opacity-100 z-[2]' 
-                : 'opacity-0 z-[1]'
+      {/* Background Images Slideshow with Ken Burns effect */}
+      {backgroundImages.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-2000 ${
+            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={image}
+            alt={`Hero background ${index + 1}`}
+            className={`w-full h-full object-cover ${
+              index === currentImageIndex ? 'animate-ken-burns' : ''
             }`}
-            style={{
-              transitionDuration: '2500ms',
-              transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
-            }}
-          >
-            {/* Image with continuous Ken Burns effect */}
-            <div className="relative w-full h-full overflow-hidden">
-              <img
-                src={image}
-                alt={`Hero background ${index + 1}`}
-                className="w-full h-full object-cover gpu-accelerated animate-ken-burns-continuous"
-                style={{
-                  animationDelay: `${index * 2}s`
-                }}
-              />
-            </div>
-          </div>
-        ))}
-        
-        {/* Dark overlay - constant layer above all images */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60 z-10"></div>
-      </div>
+          />
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+      ))}
 
-      {/* Additional gradient for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10"></div>
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
       
-      {/* Main Content */}
-      <div className="container mx-auto px-4 z-20 relative">
+      <div className="container mx-auto px-4 z-10">
         <div className="text-center max-w-3xl mx-auto">
-          {/* Company Logo - Using global animation classes */}
-          <div className={`mb-8 flex justify-center will-animate ${
-            isLoaded ? 'animate-zoom-in' : 'opacity-0'
+          {/* Company Logo - Fade in and scale */}
+          <div className={`mb-8 flex justify-center transition-all duration-1000 ${
+            isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
           }`}>
             <div className="relative">
               <img 
@@ -114,27 +70,27 @@ const Hero = () => {
                   filter: 'brightness(1.3) contrast(1.1) drop-shadow(0 0 40px rgba(255,255,255,0.8)) drop-shadow(0 0 20px rgba(255,255,255,0.5))'
                 }}
               />
-              <div className="absolute inset-0 bg-white/10 blur-3xl -z-10 animate-pulse-subtle"></div>
+              <div className="absolute inset-0 bg-white/10 blur-3xl -z-10 animate-pulse-slow"></div>
             </div>
           </div>
           
-          {/* Title - Using global fade-up animation */}
-          <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white drop-shadow-2xl will-animate ${
-            isLoaded ? 'animate-fade-up animation-delay-200' : 'opacity-0'
+          {/* Title - Fade in from bottom */}
+          <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white drop-shadow-2xl transition-all duration-1000 delay-200 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             {agentInfo.title}
           </h1>
           
-          {/* Tagline - Using global fade-up animation with delay */}
-          <p className={`text-lg md:text-xl text-white/90 mb-12 max-w-xl mx-auto will-animate ${
-            isLoaded ? 'animate-fade-up animation-delay-300' : 'opacity-0'
+          {/* Tagline - Fade in from bottom */}
+          <p className={`text-lg md:text-xl text-white/90 mb-12 max-w-xl mx-auto transition-all duration-1000 delay-300 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             מעל 10 שנות ניסיון | רמת גן, גבעתיים, תל אביב
           </p>
           
-          {/* CTA Buttons - Using global scale-in animation */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center will-animate ${
-            isLoaded ? 'animate-scale-in animation-delay-500' : 'opacity-0'
+          {/* CTA Buttons - Fade in and scale */}
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-500 ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
           }`}>
             <a
               href={`tel:${agentInfo.phone}`}
@@ -154,30 +110,39 @@ const Hero = () => {
             </a>
           </div>
         </div>
-      </div>
-      
-      {/* Scroll Indicator - Fixed positioning at bottom of hero */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <ChevronDown className="w-8 h-8 text-white/70 drop-shadow-lg" />
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown className="w-8 h-8 text-white/70" />
+        </div>
       </div>
 
       <style jsx>{`
-        @keyframes ken-burns-continuous {
-          0% { 
-            transform: scale(1) translateZ(0);
-          }
-          50% {
-            transform: scale(1.05) translateZ(0);
-          }
-          100% { 
-            transform: scale(1) translateZ(0);
-          }
+        @keyframes ken-burns {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.1); }
         }
         
-        .animate-ken-burns-continuous {
-          animation: ken-burns-continuous 18s ease-in-out infinite;
-          animation-fill-mode: both;
-          will-change: transform;
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 0.8; }
+        }
+        
+        .animate-ken-burns {
+          animation: ken-burns 8s ease-out;
+        }
+        
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
         }
       `}</style>
     </section>
