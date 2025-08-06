@@ -11,7 +11,6 @@ const Footer = () => {
         <div className="text-center">
           {/* Logo */}
           <div className="flex items-center justify-center mb-4">
-            <Trophy className="w-6 h-6 text-orange-400 ml-2" />
             <p className="text-xl font-bold">
               {agentInfo.name} | {agentInfo.title}
             </p>

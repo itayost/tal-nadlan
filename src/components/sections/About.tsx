@@ -56,7 +56,7 @@ const About = () => {
                 הערכים שהבאתי מהספורט:
               </h5>
               {/* Mobile: Single column | Tablet/Desktop: 3 columns */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 sm:grid-cols-3 gap-4">
                 {agentInfo.values.map((value, index) => (
                   <div key={index} className="text-center p-2">
                     <Target className="w-6 h-6 md:w-8 md:h-8 text-blue-600 mx-auto mb-2" />
