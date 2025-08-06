@@ -1,9 +1,10 @@
 import { Award, TrendingUp, CheckCircle } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
 export interface Stat {
   number: string;
   label: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
 }
 
 export const stats: Stat[] = [
