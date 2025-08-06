@@ -72,6 +72,11 @@ const Hero = () => {
             {agentInfo.title}
           </h1>
           
+          {/* Simple tagline */}
+          <p className="text-lg md:text-xl text-white/90 mb-12 max-w-xl mx-auto">
+            מעל 10 שנות ניסיון | רמת גן, גבעתיים, תל אביב
+          </p>
+          
           {/* Simplified CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

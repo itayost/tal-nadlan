@@ -1,4 +1,4 @@
-import { CheckCircle, Award, Users, TrendingUp } from 'lucide-react';
+import { Award, TrendingUp, CheckCircle } from 'lucide-react';
 
 export interface Stat {
   number: string;
@@ -8,6 +8,11 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { 
+    number: "מאות", 
+    label: "לקוחות מרוצים", 
+    icon: CheckCircle 
+  },
+  { 
     number: "10+", 
     label: "שנות ניסיון", 
     icon: Award 
@@ -15,11 +20,6 @@ export const stats: Stat[] = [
   { 
     number: "3", 
     label: "ערים במרכז", 
-    icon: CheckCircle 
-  },
-  { 
-    number: "100%", 
-    label: "מחויבות להצלחה", 
     icon: TrendingUp 
   }
 ];
