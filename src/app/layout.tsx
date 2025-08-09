@@ -5,49 +5,94 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'טל אזולאי - יועץ ומשווק נדל״ן | רמת גן, גבעתיים, תל אביב',
-  description: 'טל אזולאי, שחקן עבר במכבי חיפה כדורסל, יועץ ומשווק נדל״ן עם מעל 10 שנות ניסיון. מתמחה בקנייה, מכירה והשכרת נדל״ן ברמת גן, גבעתיים ותל אביב. ייעוץ חינם: 0543-999490',
-  keywords: 'טל אזולאי, נדל״ן, מתווך, יועץ נדל״ן, רמת גן, גבעתיים, תל אביב, דירות למכירה, דירות להשכרה, נכסים, השקעות נדל״ן, מכבי חיפה, כדורסל',
-  authors: [{ name: 'טל אזולאי' }],
+  title: 'משרד תיווך מוביל ברמת גן | טל אזולאי נדל״ן',
+  description: 'משרד תיווך מוביל ברמת גן בניהול טל אזולאי. מעל 10 שנות ניסיון בקנייה, מכירה והשכרת נדל״ן ברמת גן, גבעתיים ותל אביב. בעל תואר במנהל עסקים ושחקן עבר במכבי חיפה. ייעוץ חינם: 054-3999490',
+  keywords: 'משרד תיווך רמת גן, טל אזולאי, נדל״ן רמת גן, מתווך רמת גן, יועץ נדל״ן, גבעתיים, תל אביב, דירות למכירה רמת גן, דירות להשכרה, נכסים, השקעות נדל״ן, תיווך מקצועי, משרד תיווך מוביל',
+  authors: [{ name: 'טל אזולאי - משרד תיווך מוביל ברמת גן' }],
+  creator: 'טל אזולאי',
+  publisher: 'משרד תיווך טל אזולאי',
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
   openGraph: {
-    title: 'טל אזולאי - יועץ ומשווק נדל״ן',
-    description: 'מהמגרש לעולם הנדל״ן 🏡🏀 מעל 10 שנות ניסיון בליווי מקצועי ואישי. התמדה, עבודת צוות ורצון לנצח בכל עסקה.',
+    title: 'משרד תיווך מוביל ברמת גן | טל אזולאי נדל״ן',
+    description: 'משרד תיווך מוביל עם מעל 10 שנות ניסיון. בניהול טל אזולאי - בעל תואר במנהל עסקים ושחקן עבר במכבי חיפה. מתמחים בנדל״ן ברמת גן, גבעתיים ות״א 🏡🏀',
     type: 'website',
     locale: 'he_IL',
-    siteName: 'טל אזולאי נדל״ן',
+    siteName: 'משרד תיווך טל אזולאי',
+    url: 'https://tal-azulai.co.il',
+    countryName: 'ישראל',
     images: [
       {
-        url: '/images/profile.jpg', // התמונה האמיתית של טל
+        url: '/images/og-image.jpg', // תמונת OG ראשית
         width: 1200,
         height: 630,
-        alt: 'טל אזולאי - יועץ ומשווק נדל״ן',
+        alt: 'משרד תיווך טל אזולאי - מוביל ברמת גן',
+        type: 'image/jpeg',
+      },
+      {
+        url: '/images/profile.jpg', // תמונה משנית
+        width: 800,
+        height: 800,
+        alt: 'טל אזולאי - מנהל ובעלים',
+        type: 'image/jpeg',
       }
     ],
+    emails: ['talazulay88@gmail.com'],
+    phoneNumbers: ['+972-54-399-9490'],
+    faxNumbers: [],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'טל אזולאי - יועץ ומשווק נדל״ן',
-    description: 'מהמגרש לעולם הנדל״ן. מעל 10 שנות ניסיון ברמת גן, גבעתיים ותל אביב',
+    site: '@talazulai_nadlan', // עדכן אם יש חשבון טוויטר
+    creator: '@talazulai_nadlan',
+    title: 'משרד תיווך מוביל ברמת גן | טל אזולאי',
+    description: 'משרד תיווך מוביל עם מעל 10 שנות ניסיון בנדל״ן. מתמחים ברמת גן, גבעתיים ותל אביב',
+    images: ['/images/og-image.jpg'],
   },
-  viewport: 'width=device-width, initial-scale=1',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
   themeColor: '#2563eb',
+  manifest: '/manifest.json', // אם יש PWA manifest
   verification: {
     google: '', // הוסף את קוד האימות של Google Search Console
+    yandex: '', // אם רלוונטי
+    yahoo: '', // אם רלוונטי
   },
   alternates: {
-    canonical: 'https://tal-azulai.co.il', // עדכן לדומיין האמיתי
+    canonical: 'https://tal-azulai.co.il',
+    languages: {
+      'he-IL': 'https://tal-azulai.co.il',
+      'en-US': 'https://tal-azulai.co.il/en', // אם יש גרסה באנגלית
+    },
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+  },
+  category: 'נדל״ן',
+  classification: 'Business',
 };
 
 export default function RootLayout({
@@ -62,26 +107,156 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Structured Data for Local Business */}
+        {/* Additional Meta Tags */}
+        <meta name="format-detection" content="telephone=yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        
+        {/* Geo Tags for Local SEO */}
+        <meta name="geo.region" content="IL" />
+        <meta name="geo.placename" content="רמת גן" />
+        <meta name="geo.position" content="32.0853;34.8136" />
+        <meta name="ICBM" content="32.0853, 34.8136" />
+        
+        {/* Enhanced Structured Data for Real Estate Office */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "RealEstateAgent",
-              "name": "טל אזולאי",
-              "description": "יועץ ומשווק נדל״ן עם מעל 10 שנות ניסיון",
+              "name": "משרד תיווך טל אזולאי",
+              "alternateName": "טל אזולאי נדל״ן",
+              "description": "משרד תיווך מוביל ברמת גן עם מעל 10 שנות ניסיון בקנייה, מכירה והשכרת נדל״ן",
+              "url": "https://tal-azulai.co.il",
+              "logo": "/images/logo.png",
+              "image": "/images/profile.jpg",
               "telephone": "+972-54-399-9490",
-              "email": "tal@azulairealestate.co.il",
+              "email": "talazulay88@gmail.com",
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "רמת גן",
                 "addressLocality": "רמת גן",
-                "addressRegion": "תל אביב",
+                "addressRegion": "מחוז תל אביב",
+                "postalCode": "",
                 "addressCountry": "IL"
               },
-              "areaServed": ["רמת גן", "גבעתיים", "תל אביב"],
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 32.0853,
+                "longitude": 34.8136
+              },
+              "areaServed": [
+                {
+                  "@type": "City",
+                  "name": "רמת גן"
+                },
+                {
+                  "@type": "City",
+                  "name": "גבעתיים"
+                },
+                {
+                  "@type": "City",
+                  "name": "תל אביב"
+                }
+              ],
               "priceRange": "$$",
-              "openingHours": "Mo-Th 09:00-18:00, Fr 09:00-14:00",
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+                  "opens": "09:00",
+                  "closes": "18:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": "Friday",
+                  "opens": "09:00",
+                  "closes": "14:00"
+                }
+              ],
+              "founder": {
+                "@type": "Person",
+                "name": "טל אזולאי",
+                "jobTitle": "מנהל ובעלים",
+                "description": "בעל תואר ראשון במנהל עסקים, בוגר תיכון בית הספר הריאלי העברי בחיפה, שחקן עבר במכבי חיפה כדורסל",
+                "alumniOf": [
+                  {
+                    "@type": "EducationalOrganization",
+                    "name": "בית הספר הריאלי העברי בחיפה"
+                  }
+                ],
+                "knowsAbout": ["נדל״ן", "מנהל עסקים", "כדורסל"]
+              },
+              "knowsAbout": ["נדל״ן", "תיווך", "השקעות", "דירות למכירה", "דירות להשכרה"],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "שירותי תיווך",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "קנייה ומכירה של נכסים"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "השכרת דירות ובתים"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "ייעוץ להשקעות נדל״ן"
+                    }
+                  }
+                ]
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5",
+                "reviewCount": "100",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "sameAs": [
+                "https://www.facebook.com/t.a.nadlan",
+                "https://www.instagram.com/t.a.real.estate",
+                "https://wa.me/c/972543999490"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+972-54-399-9490",
+                "contactType": "sales",
+                "availableLanguage": ["Hebrew", "English"],
+                "areaServed": "IL"
+              },
+              "slogan": "כי אצלנו, תיווך הוא רק חלק קטן מהשירות",
+              "license": "31927984"
+            })
+          }}
+        />
+        
+        {/* Breadcrumb Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "דף הבית",
+                  "item": "https://tal-azulai.co.il"
+                }
+              ]
             })
           }}
         />

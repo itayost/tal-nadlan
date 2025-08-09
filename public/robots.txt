@@ -1,0 +1,39 @@
+# Robots.txt for tal-azulai.co.il
+# Allow all bots to crawl the entire site
+
+User-agent: *
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+# Block bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://tal-azulai.co.il/sitemap.xml
+
+# Host (optional, for Yandex)
+Host: https://tal-azulai.co.il
