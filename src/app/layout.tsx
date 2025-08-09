@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'משרד תיווך מוביל ברמת גן | טל אזולאי נדל״ן',
-    description: 'משרד תיווך מוביל עם מעל 10 שנות ניסיון. בניהול טל אזולאי - בעל תואר במנהל עסקים ושחקן עבר במכבי חיפה. מתמחים בנדל״ן ברמת גן, גבעתיים ות״א',
+    description: 'משרד תיווך מוביל עם מעל 10 שנות ניסיון. בניהול טל אזולאי - בעל תואר במנהל עסקים ושחקן עבר במכבי חיפה. מתמחים בנדל״ן ברמת גן, גבעתיים ות״א 🏡🏀',
     type: 'website',
     locale: 'he_IL',
     siteName: 'משרד תיווך טל אזולאי',
-    url: 'https://tal-azulai.co.il',
+    url: 'https://www.tanadlan.com',
     countryName: 'ישראל',
     images: [
       {
@@ -61,10 +61,10 @@ export const metadata: Metadata = {
     yahoo: '', // אם רלוונטי
   },
   alternates: {
-    canonical: 'https://tal-azulai.co.il',
+    canonical: 'https://www.tanadlan.com',
     languages: {
-      'he-IL': 'https://tal-azulai.co.il',
-      'en-US': 'https://tal-azulai.co.il/en', // אם יש גרסה באנגלית
+      'he-IL': 'https://www.tanadlan.com',
+      'en-US': 'https://www.tanadlan.com/en', // אם יש גרסה באנגלית
     },
   },
   robots: {
@@ -129,7 +129,7 @@ export default function RootLayout({
               "name": "משרד תיווך טל אזולאי",
               "alternateName": "טל אזולאי נדל״ן",
               "description": "משרד תיווך מוביל ברמת גן עם מעל 10 שנות ניסיון בקנייה, מכירה והשכרת נדל״ן",
-              "url": "https://tal-azulai.co.il",
+              "url": "https://www.tanadlan.com",
               "logo": "/images/logo.png",
               "image": "/images/profile.jpg",
               "telephone": "+972-54-399-9490",
@@ -254,7 +254,7 @@ export default function RootLayout({
                   "@type": "ListItem",
                   "position": 1,
                   "name": "דף הבית",
-                  "item": "https://tal-azulai.co.il"
+                  "item": "https://www.tanadlan.com"
                 }
               ]
             })
