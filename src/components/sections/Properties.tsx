@@ -1,35 +1,41 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Building, CheckCircle, Briefcase, Home } from 'lucide-react';
 import { properties } from '@/data/properties';
 import { agentInfo } from '@/data/agent';
 import { Phone } from 'lucide-react';
 
 const Properties = () => {
-  const [displayProperties, setDisplayProperties] = useState(properties.slice(0, 6));
+  // Store the shuffled properties once
+  const shuffledPropertiesRef = useRef<typeof properties>([]);
+  const [displayProperties, setDisplayProperties] = useState<typeof properties>([]);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check if mobile
-    const checkMobile = () => {
+    // Shuffle properties only once on mount
+    if (shuffledPropertiesRef.current.length === 0) {
+      shuffledPropertiesRef.current = [...properties].sort(() => Math.random() - 0.5);
+    }
+    
+    // Function to update display based on screen size
+    const updateDisplay = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       
-      // Get random properties based on screen size
-      const shuffled = [...properties].sort(() => Math.random() - 0.5);
+      // Use the already shuffled properties
       const count = mobile ? 3 : 6;
-      setDisplayProperties(shuffled.slice(0, count));
+      setDisplayProperties(shuffledPropertiesRef.current.slice(0, count));
     };
     
-    // Initial check
-    checkMobile();
+    // Initial display
+    updateDisplay();
     
     // Add resize listener
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', updateDisplay);
     
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+    return () => window.removeEventListener('resize', updateDisplay);
+  }, []); // Empty dependency array - runs only once on mount
 
   const getStatusColor = (status: string) => {
     switch (status) {

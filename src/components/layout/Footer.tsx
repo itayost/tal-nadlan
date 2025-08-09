@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Logo */}
           <div className="flex items-center justify-center mb-4">
             <p className="text-xl font-bold">
-              {agentInfo.name} | {agentInfo.title}
+              {agentInfo.name} | {agentInfo.officeName}
             </p>
           </div>
           

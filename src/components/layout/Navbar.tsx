@@ -71,7 +71,7 @@ const Navbar = () => {
                 <div className="text-lg md:text-xl font-bold text-gray-800">
                   {agentInfo.name}
                 </div>
-                <div className="text-xs md:text-sm text-gray-600">{agentInfo.title}</div>
+                <div className="text-xs md:text-sm text-gray-600">{agentInfo.officeName}</div>
               </div>
             </div>
             
@@ -142,7 +142,7 @@ const Navbar = () => {
             />
             <div>
               <div className="text-lg font-bold text-gray-800">{agentInfo.name}</div>
-              <div className="text-xs text-gray-600">{agentInfo.title}</div>
+              <div className="text-xs text-gray-600">{agentInfo.officeName}</div>
             </div>
           </div>
           <button
