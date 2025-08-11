@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'משרד תיווך מוביל ברמת גן | טל אזולאי נדל״ן',
-    description: 'משרד תיווך מוביל עם מעל 10 שנות ניסיון. בניהול טל אזולאי - בעל תואר במנהל עסקים ושחקן עבר במכבי חיפה. מתמחים בנדל״ן ברמת גן, גבעתיים ות״א 🏡🏀',
+    description: 'משרד תיווך מוביל עם מעל 10 שנות ניסיון. בניהול טל אזולאי - בעל תואר במנהל עסקים ושחקן עבר במכבי חיפה. מתמחים בנדל״ן ברמת גן, גבעתיים ות״א',
     type: 'website',
     locale: 'he_IL',
     siteName: 'משרד תיווך טל אזולאי',
