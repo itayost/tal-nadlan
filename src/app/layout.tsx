@@ -57,14 +57,11 @@ export const metadata: Metadata = {
   manifest: '/manifest.json', // אם יש PWA manifest
   verification: {
     google: '', // הוסף את קוד האימות של Google Search Console
-    yandex: '', // אם רלוונטי
-    yahoo: '', // אם רלוונטי
   },
   alternates: {
     canonical: 'https://www.tanadlan.com',
     languages: {
       'he-IL': 'https://www.tanadlan.com',
-      'en-US': 'https://www.tanadlan.com/en', // אם יש גרסה באנגלית
     },
   },
   robots: {

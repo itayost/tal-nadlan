@@ -42,7 +42,7 @@ const About = () => {
                 }}
               />
               {/* Badge - Pop in */}
-              <div className={`absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-gradient-to-br from-orange-500 to-blue-600 text-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl transition-all duration-700 delay-300 ${
+              <div className={`absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-gradient-to-br from-orange-500 to-blue-600 text-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl transition-all duration-700 delay-300 ${
                 imageInView ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-0 rotate-12'
               }`}>
                 <Trophy className="w-6 h-6 md:w-8 md:h-8 mb-1 md:mb-2" />

@@ -14,7 +14,7 @@ export interface Property {
 export const properties: Property[] = [
   {
     id: 1,
-    title: "דירת 2 חדרים בבניין חדש",
+    title: "דירת 2 חדרים בבניין חדש עם חניה פרטית",
     price: "עסקה הושלמה",
     size: "50 מ״ר",
     rooms: "2 חדרים",
@@ -62,7 +62,7 @@ export const properties: Property[] = [
   },
   {
     id: 5,
-    title: "3 חדרים להשכרה בגינדי",
+    title: "3 חדרים להשכרה במגדלי גינדי תל אביב",
     price: "הושכר",
     size: "75 מ״ר",
     rooms: "3 חדרים",
