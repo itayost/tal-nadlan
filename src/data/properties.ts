@@ -83,5 +83,17 @@ export const properties: Property[] = [
     location: "שכונת נגבה, רמת גן",
     description: "דירת 4 חדרים בבניין חדש עם מרפסת שמש וחניה פרטית",
     features: ["מרפסת שמש", "חניה פרטית", "בניין חדש", "שכונה מבוקשת"]
+  },
+  {
+    id: 7,
+    title: "דירת 2 חדרים בבניין חדש עם ממ״ד וחניה",
+    price: "עסקה הושלמה",
+    size: "50 מ״ר",
+    rooms: "2 חדרים",
+    image: "/images/properties/sold-haruzim.jpg",
+    status: "נמכר",
+    location: "שכונת חרוזים",
+    description: "דירת 2 חדרים בבניין חדש עם ממ״ד וחניה פרטית",
+    features: ["ממ״ד", "חניה פרטית", "בניין חדש"]
   }
 ];
