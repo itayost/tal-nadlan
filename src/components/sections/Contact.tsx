@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, Facebook, Instagram, MessageCircle, Gift } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Facebook, Instagram, MessageCircle, Gift, Music } from 'lucide-react';
 import { agentInfo } from '@/data/agent';
 
 const Contact = () => {
@@ -98,6 +98,15 @@ const Contact = () => {
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href={agentInfo.social.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black p-3 rounded-full text-white hover:bg-gray-800 transition-all transform hover:scale-110"
+                  aria-label="TikTok"
+                >
+                  <Music className="w-5 h-5" />
                 </a>
                 <a
                   href={`https://wa.me/${agentInfo.whatsapp}`}

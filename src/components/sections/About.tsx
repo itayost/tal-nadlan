@@ -73,7 +73,7 @@ const About = () => {
             
             {/* Qualifications - Fade in one by one */}
             <div className="space-y-2 md:space-y-3 mb-6">
-              {agentInfo.qualifications.slice(0, 4).map((qualification, index) => (
+              {agentInfo.qualifications.slice(0, 5).map((qualification, index) => (
                 <div 
                   key={index} 
                   className={`flex items-start md:items-center transition-all duration-500 ${

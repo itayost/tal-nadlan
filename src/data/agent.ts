@@ -42,6 +42,7 @@ export const agentInfo = {
   // כישורים והסמכות
   qualifications: [
     "רישיון תיווך מספר 31927984",
+    "חבר בשלכת מתווכי הנדל״ן הארצית",
     "בעל תואר ראשון במנהל עסקים",
     "בוגר תיכון בית הספר הריאלי העברי בחיפה",
     "מעל 10 שנות ניסיון בתחום הנדל״ן",
@@ -88,6 +89,7 @@ export const agentInfo = {
   social: {
     facebook: "https://www.facebook.com/t.a.nadlan?mibextid=wwXIfr&rdid=SgB1gtyll9l0ylcl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19YcBTLjiH%2F%3Fmibextid%3DwwXIfr#",
     instagram: "https://www.instagram.com/t.a.real.estate?igsh=MWdvcTl3ZzRmbjU1OQ%3D%3D&utm_source=qr",
-    catalog: "https://wa.me/c/972543999490"
+    catalog: "https://wa.me/c/972543999490",
+    tiktok: "https://www.tiktok.com/@tarealestate"
   }
 };
