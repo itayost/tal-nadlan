@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useInView } from '@/hooks/useInView';
-import { Play } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
+import { agentInfo } from '@/data/agent';
 
 const VideoShowcase = () => {
   const { ref: sectionRef, isInView } = useInView({ threshold: 0.1 });
@@ -49,22 +50,24 @@ const VideoShowcase = () => {
             {/* Decorative overlay - subtle gradient at bottom */}
             <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
           </div>
-
-          {/* Optional: Play icon hint (shows before video loads) */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="bg-blue-600/90 rounded-full p-6 backdrop-blur-sm">
-              <Play className="w-12 h-12 text-white fill-current" />
-            </div>
-          </div>
         </div>
 
-        {/* Optional: Additional context or CTA below video */}
+        {/* CTA below video */}
         <div className={`text-center mt-8 transition-all duration-1000 delay-500 ${
           isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <p className="text-gray-600 text-sm md:text-base max-w-xl mx-auto">
+          <p className="text-gray-600 text-sm md:text-base max-w-xl mx-auto mb-6">
             רוצים לדעת עוד? צרו איתי קשר לייעוץ אישי וחינם
           </p>
+          <a
+            href={`https://wa.me/${agentInfo.whatsapp}?text=היי טל, ראיתי את הסרטון ואשמח לקבל פרטים נוספים`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-green-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full hover:bg-green-700 transition-all duration-300 font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            <MessageCircle className="w-5 h-5 ml-2" />
+            שלח הודעה בווטסאפ
+          </a>
         </div>
       </div>
     </section>
