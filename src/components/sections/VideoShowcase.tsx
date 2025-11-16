@@ -5,17 +5,36 @@ import { useInView } from '@/hooks/useInView';
 import { MessageCircle } from 'lucide-react';
 import { agentInfo } from '@/data/agent';
 
-// Declare YouTube IFrame API types
+// YouTube IFrame API type definitions
+interface YTPlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  mute: () => void;
+  destroy: () => void;
+}
+
+interface YTPlayerEvent {
+  target: YTPlayer;
+}
+
+interface YT {
+  Player: new (elementId: string, config: {
+    events?: {
+      onReady?: (event: YTPlayerEvent) => void;
+    };
+  }) => YTPlayer;
+}
+
 declare global {
   interface Window {
-    YT: any;
+    YT: YT;
     onYouTubeIframeAPIReady: () => void;
   }
 }
 
 const VideoShowcase = () => {
   const { ref: sectionRef, isInView } = useInView({ threshold: 0.3, triggerOnce: false });
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<YTPlayer | null>(null);
   const playerReadyRef = useRef(false);
 
   // Load YouTube IFrame API
@@ -51,7 +70,7 @@ const VideoShowcase = () => {
 
     playerRef.current = new window.YT.Player('youtube-player', {
       events: {
-        onReady: (event: any) => {
+        onReady: (event: YTPlayerEvent) => {
           playerReadyRef.current = true;
           // Mute the player
           event.target.mute();
