@@ -1,12 +1,80 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useInView } from '@/hooks/useInView';
 import { MessageCircle } from 'lucide-react';
 import { agentInfo } from '@/data/agent';
 
+// Declare YouTube IFrame API types
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
 const VideoShowcase = () => {
-  const { ref: sectionRef, isInView } = useInView({ threshold: 0.1 });
+  const { ref: sectionRef, isInView } = useInView({ threshold: 0.3, triggerOnce: false });
+  const playerRef = useRef<any>(null);
+  const playerReadyRef = useRef(false);
+
+  // Load YouTube IFrame API
+  useEffect(() => {
+    // Check if API is already loaded
+    if (window.YT && window.YT.Player) {
+      initializePlayer();
+      return;
+    }
+
+    // Load the API
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+    // API ready callback
+    window.onYouTubeIframeAPIReady = () => {
+      initializePlayer();
+    };
+
+    return () => {
+      // Cleanup
+      if (playerRef.current && playerRef.current.destroy) {
+        playerRef.current.destroy();
+      }
+    };
+  }, []);
+
+  // Initialize YouTube player
+  const initializePlayer = () => {
+    if (playerRef.current) return; // Already initialized
+
+    playerRef.current = new window.YT.Player('youtube-player', {
+      events: {
+        onReady: (event: any) => {
+          playerReadyRef.current = true;
+          // Mute the player
+          event.target.mute();
+        },
+      },
+    });
+  };
+
+  // Control playback based on visibility
+  useEffect(() => {
+    if (!playerReadyRef.current || !playerRef.current) return;
+
+    try {
+      if (isInView) {
+        playerRef.current.playVideo();
+      } else {
+        playerRef.current.pauseVideo();
+      }
+    } catch (error) {
+      // Silently handle errors
+      console.log('Video control error:', error);
+    }
+  }, [isInView]);
 
   return (
     <section
@@ -35,8 +103,9 @@ const VideoShowcase = () => {
             {/* Video Wrapper - Responsive aspect ratio for vertical video (9:16) */}
             <div className="relative w-full" style={{ paddingBottom: '177.78%' /* 16:9 inverted for vertical */ }}>
               <iframe
+                id="youtube-player"
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/WG2o_WcKZ6g?autoplay=1&mute=1&loop=1&playlist=WG2o_WcKZ6g"
+                src="https://www.youtube.com/embed/WG2o_WcKZ6g?enablejsapi=1&mute=1&loop=1&playlist=WG2o_WcKZ6g"
                 title="סרטון הצגה"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
