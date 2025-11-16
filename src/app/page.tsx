@@ -4,6 +4,7 @@ import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import Properties from '@/components/sections/Properties';
+import VideoShowcase from '@/components/sections/VideoShowcase';
 import Testimonials from '@/components/sections/Testimonials';
 import Contact from '@/components/sections/Contact';
 
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero />
         <About />
         <Properties />
+        <VideoShowcase />
         <Testimonials />
         <Contact />
       </main>

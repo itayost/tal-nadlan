@@ -49,6 +49,7 @@ const Navbar = () => {
     { href: '#hero', label: 'בית', icon: '' },
     { href: '#about', label: 'אודות', icon: '' },
     { href: '#properties', label: 'נכסים', icon: '' },
+    { href: '#video-showcase', label: 'הצצה', icon: '' },
     { href: '#testimonials', label: 'המלצות', icon: '' },
     { href: '#contact', label: 'צור קשר', icon: '' },
   ];
