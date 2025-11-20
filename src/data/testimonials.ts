@@ -11,6 +11,15 @@ export interface Testimonial {
 
 export const testimonials: Testimonial[] = [
   {
+    id: 9,
+    name: "משפחת עוזיהו",
+    location: "רמת גן",
+    text: "טל הוא מתווך מאוד מקצועי ואמין אדם מקסים, נחמד ושירותי. טל ליווה אותנו לאורך כל הדרך ברכישת הדירה הציע עזרה במציאת עורך דין עשה את כל מה שביכולתו כדי לעזור במחיר ולסבסד כמה שניתן היה מאוד קשוב לצרכים שלנו וסבלני לאורך כל ההחלטות עשה את כל מה שביכולתו לקדם את העסקה בצורה נעימה והוגנת למוכר ולקונה הרגשנו שיש עלל מי לסמוך. בקיצור עשר מעשר💪🏻",
+    rating: 5,
+    type: "קנייה",
+    propertyType: "דירת 4 חדרים"
+  },
+  {
     id: 1,
     name: "משפחת כהן",
     location: "רמת גן",
