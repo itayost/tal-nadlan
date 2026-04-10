@@ -177,7 +177,7 @@ export default function RootLayout({
                 "@type": "Person",
                 "name": "טל אזולאי",
                 "jobTitle": "מנהל ובעלים",
-                "description": "בעל תואר ראשון במנהל עסקים, בוגר תיכון בית הספר הריאלי העברי בחיפה, שחקן עבר במכבי חיפה כדורסל",
+                "description": "בעל תואר ראשון במנהל עסקים, בוגר תיכון בית הספר הריאלי העברי בחיפה, שחקן עבר במכבי חיפה כדורסל בליגת העל",
                 "alumniOf": [
                   {
                     "@type": "EducationalOrganization",
