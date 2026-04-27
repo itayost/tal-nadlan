@@ -11,6 +11,15 @@ export interface Testimonial {
 
 export const testimonials: Testimonial[] = [
   {
+    id: 11,
+    name: "זיו ואפרת",
+    location: "מרכז העיר רמת גן",
+    text: "תודה רבה אחי על הכל אתה מקצוען אמיתי (לא יודע אם ספרתי לך אבל ב2005 הייתי שותף בסוכנות נדלן) מכיר את העבודה שלך מקיר לקיר",
+    rating: 5,
+    type: "השכרה",
+    propertyType: "דירה"
+  },
+  {
     id: 10,
     name: "לבנת וארז",
     location: "רמת גן",
