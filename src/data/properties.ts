@@ -95,5 +95,15 @@ export const properties: Property[] = [
     location: "שכונת חרוזים",
     description: "דירת 2 חדרים בבניין חדש עם ממ״ד וחניה פרטית",
     features: ["ממ״ד", "חניה פרטית", "בניין חדש"]
+  },
+  {
+    id: 8,
+    title: "דירת גן 3 חדרים",
+    price: "עסקה הושלמה",
+    size: "111 מ״ר",
+    rooms: "3 חדרים",
+    image: "/images/properties/sold-borohov.jpeg",
+    status: "נמכר",
+    location: "שכונת קרית בורוכוב, רמת גן"
   }
 ];
