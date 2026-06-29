@@ -105,5 +105,15 @@ export const properties: Property[] = [
     image: "/images/properties/sold-borohov.jpeg",
     status: "נמכר",
     location: "שכונת קרית בורוכוב, רמת גן"
+  },
+  {
+    id: 9,
+    title: "דירת 4 חדרים",
+    price: "עסקה הושלמה",
+    size: "120 מ״ר",
+    rooms: "4 חדרים",
+    image: "/images/properties/sold-ganim.jpeg",
+    status: "נמכר",
+    location: "שכונת נחלת גנים, רמת גן"
   }
 ];
