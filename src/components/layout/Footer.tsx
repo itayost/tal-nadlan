@@ -37,7 +37,18 @@ const Footer = () => {
           
           {/* Copyright */}
           <p className="text-gray-500 text-sm">
-            &copy; {currentYear} ItayOst. כל הזכויות שמורות
+            &copy; {currentYear} {agentInfo.name}. כל הזכויות שמורות
+          </p>
+          <p className="text-gray-500 text-xs mt-2">
+            עוצב ופותח על ידי{' '}
+            <a
+              href="https://www.itayost.com"
+              target="_blank"
+              rel="noopener"
+              className="hover:text-gray-300 transition-colors"
+            >
+              ITAYOST
+            </a>
           </p>
         </div>
       </div>
